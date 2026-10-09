@@ -1,0 +1,16 @@
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+CMakeUserPresets.json
+
+[Bb]uild/
+.cache/
+artifacts/
+*.rdc
+imgui.ini
