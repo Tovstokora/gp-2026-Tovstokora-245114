@@ -1,12 +1,12 @@
-# `<nazwa świata>`
+# `winter_is_coming`
 
 Dokumentacja projektu OpenGL. Zastąp pola `<...>` informacjami właściwymi dla projektu i usuń nieużywane sekcje.
 
 ## Świat
 
-- Autor: `<imię i nazwisko>`
-- Biom: `<nazwa>`
-- Ziarno generatora: `<wartość>`
+- Autor: `Hanna Tovstokora`
+- Biom: `Tundra`
+- Ziarno generatora: ` 245114`
 - Sposób wyznaczenia ziarna: `<opis albo nie dotyczy>`
 - Krótki opis świata: `<2–4 zdania>`
 

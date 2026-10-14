@@ -1,0 +1,20 @@
+{
+  "vendor": "Intel",
+  "renderer": "Intel(R) Iris(R) Xe Graphics",
+  "openglVersion": "4.5.0 - Build 32.0.101.6874",
+  "glslVersion": "4.50 - Build 32.0.101.6874",
+  "coreProfile": true,
+  "debugContext": true,
+  "srgbFramebuffer": true,
+  "limits": {
+    "uniformBufferBindings": 84,
+    "shaderStorageBufferBindings": 16,
+    "maxTextureSize": 16384,
+    "combinedTextureImageUnits": 192,
+    "vertexAttribs": 16
+  },
+  "timerQuerySupport": true,
+  "dsaFunctionsAvailable": true,
+  "compliant": true,
+  "failures": [  ]
+}

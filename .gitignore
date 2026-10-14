@@ -14,3 +14,9 @@ CMakeUserPresets.json
 artifacts/
 *.rdc
 imgui.ini
+
+src/out/
+out/
+
+.vs/
+src/.vs/
