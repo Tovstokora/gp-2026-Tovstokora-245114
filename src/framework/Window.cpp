@@ -152,7 +152,7 @@ std::unique_ptr<Window> Window::create(const RunConfig& config, std::string& err
     }
 
     result->srgbCapable_ = defaultFramebufferIsSrgb(result->handle_);
-    glfwSwapInterval(1);
+	glfwSwapInterval(0); //wyłaczone vsync
 
     return result;
 }

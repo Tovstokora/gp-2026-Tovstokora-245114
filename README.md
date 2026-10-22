@@ -6,9 +6,9 @@ Dokumentacja projektu OpenGL. Zastąp pola `<...>` informacjami właściwymi dla
 
 - Autor: `Hanna Tovstokora`
 - Biom: `Tundra`
-- Ziarno generatora: ` 245114`
-- Sposób wyznaczenia ziarna: `<opis albo nie dotyczy>`
-- Krótki opis świata: `<2–4 zdania>`
+- Ziarno generatora: `245114`
+- Sposób wyznaczenia ziarna: `nie dotyczy`
+- Krótki opis świata: `Kraina inspirowana Westerosem. Skuta lodem tundra. Słońce wisi nisko nad horyzontem.Krajobraz tworzą rówiny śnieżne, skaliste wzniesienia i formacje lodowe.`
 
 ### Opcjonalne rozszerzenie
 
@@ -155,13 +155,13 @@ void drawGui();
 
 ## Sterowanie
 
-- Ruch kamery: `<klawisze>`
-- Obrót kamery: `<mysz/klawisze>`
-- Ruch góra/dół: `<klawisze>`
-- Przechwycenie/zwolnienie kursora: `<klawisz>`
-- Reset kamery: `<klawisz lub kontrolka>`
-- Najważniejsze kontrolki ImGui: `<lista>`
-- Przełączniki diagnostyczne: `<lista>`
+- Ruch kamery: `W/A/S/D`
+- Obrót kamery: `mysz (po kliknięciu okna)`
+- Ruch góra/dół: `Space (góra), Left Ctrl (dół)`
+- Przechwycenie/zwolnienie kursora: `kliknięcie w okno/Escape`
+- Reset kamery: `R albo przycisk „Reset camera"`
+	- Najważniejsze kontrolki ImGui: `<Amplitude>, <Frequency>, <Freq gain>, <Persistence>, <Octaves>, <Grid size>, <World size>, <Wireframe>, <Reset params>, <Camera speed>, <FOV>`
+- Przełączniki diagnostyczne: `<Wireframe>, <Mesh>`
 
 ## Diagnostyka
 
@@ -196,10 +196,14 @@ Raport można również zapisać do pliku JSON:
 
 ### Diagnostyka renderowania
 
-- Tryb debugowy OpenGL: `<sposób włączenia>`
+- Tryb debugowy OpenGL: `włączony automatycznie w konfiguracji `debug`
+  (framework tworzy kontekst z `GLFW_OPENGL_DEBUG_CONTEXT` i rejestruje
+  `glDebugMessageCallback`). W konsoli widoczne są komunikaty o błędach
+  shaderów i kontekstu.`
 - Podglądy buforów i tekstur: `<kontrolki>`
 - Markery RenderDoc: `<najważniejsze zdarzenia>`
-- Liczniki CPU/GPU: `<lista>`
+- Liczniki CPU/GPU: `licznik Mesh w ImGui (wierzchołki, trójkąty,
+  indeksy), licznik FPS z ImGui.`
 
 ## Budowanie Release i charakterystyka wydajności
 

@@ -1,4 +1,4 @@
-﻿#include "project/TerrainGenerator.h"
+#include "project/TerrainGenerator.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/noise.hpp>
 
