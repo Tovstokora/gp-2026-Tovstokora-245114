@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 namespace openglgp::project::gl
 {
@@ -25,20 +26,27 @@ namespace openglgp::project::gl
             return *this;
         }
         static GLShaderProgram fromFiles(const std::string& vp, const std::string& fp, const char* label = nullptr) {
-            GLuint v = compileFromFile(GL_VERTEX_SHADER, vp);
-            GLuint f = compileFromFile(GL_FRAGMENT_SHADER, fp);
-            GLuint id = glCreateProgram();
-            glAttachShader(id, v); glAttachShader(id, f);
-            glLinkProgram(id);
-            glDeleteShader(v); glDeleteShader(f);
-            GLint ok = 0; glGetProgramiv(id, GL_LINK_STATUS, &ok);
+            auto v = compileFromFile(GL_VERTEX_SHADER, vp);
+            auto f = compileFromFile(GL_FRAGMENT_SHADER, fp);
+
+            GLShaderProgram p;
+            p.m_id = glCreateProgram();
+            if (p.m_id == 0)
+                throw std::runtime_error("glCreateProgram failed.");
+
+            glAttachShader(p.m_id, v.id);
+            glAttachShader(p.m_id, f.id);
+            glLinkProgram(p.m_id);
+            GLint ok = 0; glGetProgramiv(p.m_id, GL_LINK_STATUS, &ok);
             if (!ok) {
-                char log[4096]; glGetProgramInfoLog(id, sizeof(log), nullptr, log);
-                glDeleteProgram(id);
+                char log[4096]{};
+                glGetProgramInfoLog(p.m_id, sizeof(log), nullptr, log);
                 throw std::runtime_error(std::string("Link failed: ") + log);
             }
-            GLShaderProgram p; p.m_id = id;
-            if (label) glObjectLabel(GL_PROGRAM, id, -1, label);
+
+            glDetachShader(p.m_id, v.id);
+            glDetachShader(p.m_id, f.id);
+            if (label) glObjectLabel(GL_PROGRAM, p.m_id, -1, label);
             return p;
         }
         void use() const { glUseProgram(m_id); }
@@ -46,23 +54,32 @@ namespace openglgp::project::gl
         void setMat4(const char* n, const glm::mat4& m) const {
             glUniformMatrix4fv(glGetUniformLocation(m_id, n), 1, GL_FALSE, glm::value_ptr(m));
         }
-        void setVec3(const char* n, const glm::vec3& v) const {
-            glUniform3fv(glGetUniformLocation(m_id, n), 1, glm::value_ptr(v));
-        }
     private:
-        static GLuint compileFromFile(GLenum stage, const std::string& path) {
+        struct ShaderHandle {
+            GLuint id;
+            explicit ShaderHandle(GLuint value) noexcept : id(value) {}
+            ~ShaderHandle() { if (id) glDeleteShader(id); }
+            ShaderHandle(const ShaderHandle&) = delete;
+            ShaderHandle& operator=(const ShaderHandle&) = delete;
+            ShaderHandle(ShaderHandle&& other) noexcept : id(std::exchange(other.id, 0)) {}
+            ShaderHandle& operator=(ShaderHandle&&) = delete;
+        };
+
+        static ShaderHandle compileFromFile(GLenum stage, const std::string& path) {
             std::ifstream in(path);
             if (!in) throw std::runtime_error("Cannot open shader: " + path);
             std::stringstream ss; ss << in.rdbuf();
             std::string src = ss.str();
             const char* p = src.c_str();
-            GLuint s = glCreateShader(stage);
-            glShaderSource(s, 1, &p, nullptr);
-            glCompileShader(s);
-            GLint ok = 0; glGetShaderiv(s, GL_COMPILE_STATUS, &ok);
+            ShaderHandle s(glCreateShader(stage));
+            if (s.id == 0)
+                throw std::runtime_error("glCreateShader failed for: " + path);
+            glShaderSource(s.id, 1, &p, nullptr);
+            glCompileShader(s.id);
+            GLint ok = 0; glGetShaderiv(s.id, GL_COMPILE_STATUS, &ok);
             if (!ok) {
-                char log[4096]; glGetShaderInfoLog(s, sizeof(log), nullptr, log);
-                glDeleteShader(s);
+                char log[4096]{};
+                glGetShaderInfoLog(s.id, sizeof(log), nullptr, log);
                 throw std::runtime_error("Compile failed (" + path + "): " + log);
             }
             return s;

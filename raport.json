@@ -1,8 +1,8 @@
-  {
+{
   "vendor": "Intel",
   "renderer": "Intel(R) Iris(R) Xe Graphics",
-  "openglVersion": "4.5.0 - Build 32.0.101.6874",
-  "glslVersion": "4.50 - Build 32.0.101.6874",
+  "openglVersion": "4.5.0 - Build 32.0.101.7092",
+  "glslVersion": "4.50 - Build 32.0.101.7092",
   "coreProfile": true,
   "debugContext": true,
   "srgbFramebuffer": true,

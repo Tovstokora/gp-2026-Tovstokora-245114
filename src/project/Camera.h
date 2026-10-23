@@ -11,7 +11,7 @@ namespace openglgp::project
     class Camera
     {
     public:
-        void init(GLFWwindow* w);
+        void init();
         void update(GLFWwindow* w, float dt, bool uiWantsMouse, bool uiWantsKeyboard);
         void reset();
         glm::mat4 viewMatrix() const;

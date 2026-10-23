@@ -193,6 +193,12 @@ Raport można również zapisać do pliku JSON:
 ```text
 <ścieżka-do-programu>/OpenGLGP --diagnostics-json <plik>
 ```
+ VAO: `terrain.VAO` — pole `Vertex Array Object`.
+- VBO: `terrain.VBO` — wiersz `0`, stride 24 bajty.
+- EBO: `terrain.EBO` — wiersz `Element`, indeksy 4-bajtowe.
+- Atrybut 0 (`aPos`): 3 × float32, offset 0.
+- Atrybut 1 (`aColor`): 3 × float32, offset 12.
+- Liczba indeksów: 23814, typ `GL_UNSIGNED_INT`.
 
 ### Diagnostyka renderowania
 
