@@ -56,12 +56,20 @@ namespace openglgp::project
     void Camera::processKeyboard(GLFWwindow* window, float dt)
     {
         const float v = m_speed * dt;
-        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) m_pos += m_front * v;
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) m_pos -= m_front * v;
-        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) m_pos -= m_right * v;
-        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) m_pos += m_right * v;
-        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) m_pos += m_worldUp * v;
-        if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) m_pos -= m_worldUp * v;
+        glm::vec3 direction(0.0f);
+
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) direction += m_front;
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) direction -= m_front;
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) direction -= m_right;
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) direction += m_right;
+        if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) direction += m_worldUp;
+        if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) direction -= m_worldUp;
+
+        if (glm::dot(direction, direction) > 0.0f)
+        {
+            m_pos += glm::normalize(direction) * v;
+        }
+
         if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) reset();
     }
 
