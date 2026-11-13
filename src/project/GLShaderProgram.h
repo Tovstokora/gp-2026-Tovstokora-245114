@@ -52,7 +52,15 @@ namespace openglgp::project::gl
         void use() const { glUseProgram(m_id); }
         GLuint id() const { return m_id; }
         void setMat4(const char* n, const glm::mat4& m) const {
-            glUniformMatrix4fv(glGetUniformLocation(m_id, n), 1, GL_FALSE, glm::value_ptr(m));
+            glProgramUniformMatrix4fv(m_id, glGetUniformLocation(m_id, n), 1, GL_FALSE, glm::value_ptr(m));
+        }
+
+        void setVec3(const char* n, const glm::vec3& v) const {
+            glProgramUniform3fv(m_id, glGetUniformLocation(m_id, n), 1, glm::value_ptr(v));
+        }
+
+        void setInt(const char* n, int v) const {
+            glProgramUniform1i(m_id, glGetUniformLocation(m_id, n), v);
         }
     private:
         struct ShaderHandle {

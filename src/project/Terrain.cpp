@@ -109,6 +109,8 @@ namespace openglgp::project
 
                 vertex.position = glm::vec3(x, h, z);
 
+                vertex.uv = glm::vec2(x, z) * 0.1f;
+
                 minHeight = std::min(minHeight, h);
 
                 
@@ -200,6 +202,12 @@ namespace openglgp::project
 
         
         m_vao.enableAttrib(1);
+        
+        m_vao.attribFormat(2, 2, GL_FLOAT, GL_FALSE, offsetof(TerrainVertex, uv));
+
+        m_vao.attribBinding(2, 0);
+
+        m_vao.enableAttrib(2);
     }
 
     

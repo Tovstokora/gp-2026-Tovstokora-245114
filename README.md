@@ -160,8 +160,16 @@ void drawGui();
 - Ruch góra/dół: `Space (góra), Left Ctrl (dół)`
 - Przechwycenie/zwolnienie kursora: `kliknięcie w okno/Escape`
 - Reset kamery: `R albo przycisk „Reset camera"`
-	- Najważniejsze kontrolki ImGui: `<Amplitude>, <Frequency>, <Freq gain>, <Persistence>, <Octaves>, <Grid size>, <World size>, <Wireframe>, <Reset params>, <Camera speed>, <FOV>`
-- Przełączniki diagnostyczne: `<Wireframe>, <Mesh>`
+	-Parametry terenu: `Amplitude`, `Frequency`, `Freq gain`, `Persistence`, `Octaves`, `Grid size`, `World size`.
+- Widok siatki: `Wireframe`.
+- Przywrócenie parametrów terenu: `Reset params`.
+- Ustawienia kamery: `Camera speed`, `FOV`.
+- Wybór węzła sceny: `Object`.
+- Lokalna transformacja węzła: `Position`, `Rotation (deg)`, `Scale`.
+- Zatrzymanie i wznowienie animacji: `Pause animation`.
+- Prędkość animacji: `Animation speed`.
+- Informacje w panelu: `Parent`, `Local`, `Global`, `Mesh`, `FPS`, `Seed`, `sRGB`, `Flag Y (total)`.
+- Przełączniki diagnostyczne programu: `--diagnostics` oraz `--diagnostics-json raport.json`.
 
 ## Diagnostyka
 
@@ -243,7 +251,8 @@ Wnioski: `<krótka interpretacja wąskiego gardła i porównania albo brak>`.
 
 Modele, tekstury i inne zasoby potrzebne do uruchomienia projektu:
 
-- `<ścieżka>` — `<przeznaczenie, źródło i licencja>`
+ `res/models/castle-tower/` — model wieży OBJ, materiały MTL i tekstury. Źródło: https://grab3d.com/models/buildings/castle-tower/. Licencja: CC0 1.0. Plik licencji: `res/models/castle-tower/LICENSE.txt`.
+- `res/textures/terrain-test.png` — tekstura śniegu „Smooth snow”, autor: ManyTextures.com. Źródło: https://www.manytextures.com/texture/104/smooth-snow/. Licencja: Creative Commons Attribution 4.0 International (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/.
 
 Nietypowe informacje konieczne do poprawnego załadowania zasobów:
 `<opis albo brak>`.
